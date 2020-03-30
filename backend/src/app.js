@@ -11,5 +11,4 @@ app.use(express.json())
 app.use(routes)
 app.use(errors())
 
-// Retorna um Server
-app.listen(3334, () => console.log('Server running...'))
+module.exports = app
