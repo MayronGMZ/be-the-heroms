@@ -25,30 +25,36 @@ export default function Incident() {
 
   // Função que vai carregar os Casos
   async function loadIncidents() {
+    // Não carrega Casos se a condição abaixo for true
     if (loading) {
       return
     }
 
+    // Não carrega Casos se a condição abaixo for true
     if (total > 0 && incidents.length === total) {
       return
     }
 
+    // Setta loading pra true
     setLoading(true)
 
+    // Response recebe os Casos e a página a ser inserida em setIncidents()
     const response = await api.get('incidents', {
       params: { page }
     })
 
     setIncidents([...incidents, ...response.data]) // Spread anexa dois vetores dentro de um único vetor
-    setTotal(response.headers['x-total-count'])
-    setPage(page + 1)
-    setLoading(false)
+    setTotal(response.headers['x-total-count']) // Setta a quantidade de casos vindas do back-end
+    setPage(page + 1) // Setta o número de páginas
+    setLoading(false) // Setta false para loading
   }
 
+  // useEffect() executa loadIncidents assim que a página é renderizada
   useEffect(() => {
     loadIncidents()
   }, [])
 
+  // Renderização
   return (
     <View style={styles.container}>
       <View style={styles.header}>
