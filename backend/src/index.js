@@ -10,4 +10,4 @@ app.use(express.json())
 app.use(routes)
 
 // Retorna um Server
-app.listen(3333, () => console.log('Server running...'))
+app.listen(3334, () => console.log('Server running...'))
